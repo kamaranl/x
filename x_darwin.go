@@ -20,7 +20,9 @@ func (a *Alert) alert() {
 
 	format := "display dialog %q with title %q with icon %s"
 	script := fmt.Sprintf(format, a.Message, a.Title, level)
-	_ = exec.Command("osascript", "-e", script).Start()
+	cmd := exec.Command("osascript", "-e", script)
+	_ = cmd.Start()
+	a.OK = cmd.ProcessState.Success()
 }
 
 func OpenUrl(url string) error { return exec.Command("open", url).Start() }

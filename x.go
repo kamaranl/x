@@ -19,7 +19,9 @@ type Alert struct {
 	Title   string
 	Message string
 	Level   AlertLevel
-	label   string
+	OK      bool
+
+	label string
 }
 
 func NewAlert(title, message string, level AlertLevel) *Alert {
